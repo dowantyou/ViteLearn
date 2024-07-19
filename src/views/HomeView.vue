@@ -10,6 +10,7 @@
         <div class="Content">
           <Main />
           <FullCard />
+           <!-- <CardSkeleton /> -->
         </div>
       </main>
       <!-- <nav class="order-first w-60 ">Navigation</nav>
@@ -36,6 +37,7 @@ import LogoGroup from '@/components/home/LogoGroup.vue';
 import Main from '@/components/home/Main.vue';
 import FullCard from '@/components/home/card/FullCard.vue';
 import FooterBox from '@/components/home/Footerbox/FooterBox.vue';
+import CardSkeleton from '@/components/home/card/CardSkeleton.vue';
 </script>
 <style lang="css" scoped>
 @tailwind base;

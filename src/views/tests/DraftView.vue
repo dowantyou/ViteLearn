@@ -8,6 +8,7 @@
             <nav class="order-first w-60 bg-blue-100">Navigation</nav>
             <main class="flex-1 bg-blue-50">
                 <Main />
+                <CardSkeleton />
                 <!-- <TestButton /> -->
             </main>
 
@@ -34,6 +35,7 @@ import LogoGroup from '@/components/home/LogoGroup.vue';
 import Main from '@/components/home/Main.vue';
 import FullCard from '@/components/home/card/FullCard.vue';
 import FooterBox from '@/components/home/Footerbox/FooterBox.vue';
+import CardSkeleton from '@/components/home/card/CardSkeleton.vue';
 </script>
 <style lang="css" scoped>
 @tailwind base;

@@ -4,20 +4,23 @@
     <!-- 使用v-for指令来循环渲染多张卡片 -->
     <div class="book" v-for="(book, index) in books" :key="index" :class="{ 'book--expanded': expandedIndex === index }"
       @click="toggleBook(index)" v-show="expandedIndex === index || showAllCards">
-
       <!-- 骨架屏效果 -->
       <div class="book__cover loading" v-if="isLoading">
       <div class="header-image">
         <div class="overlay"></div>
       </div>
+
       <div class="title-wrap">
-        <h1 class="article-title"></h1>
-        <p class="light-ipa"></p>
-        <p class="old-ipa"></p>
-        <p class="mw-ipa"></p>
+        <h1 class="article-title">1</h1>
+        <p class="light-ipa">2</p>
+        <p class="old-ipa">3</p>
+        <p class="mw-ipa">4</p>
       </div>
-      <p class="book__cover-exerpt"></p>
+
+      <p class="book__cover-exerpt">5
+      </p>
     </div>
+       <!-- 实际效果 -->
       <div v-else class="book__cover">
         <div class="header-image">
           <div class="overlay"></div>
@@ -68,7 +71,7 @@ const expandedIndex = ref(null); // 当前展开的卡片索引
 const showAllCards = ref(true); // 控制是否显示所有卡片
 // 新增的加载状态变量
 const isLoading = ref(true);
-const loadingGray = ref('#ededed'); // 定义loading-gray变量
+
 
 // 使用计算属性决定是否添加 'wrapper--expanded' 类
 const isWrapperExpanded = computed(() => expandedIndex.value !== null);
@@ -386,11 +389,11 @@ body.no-scroll {
 .loading .old-ipa,
 .loading .mw-ipa,
 .loading .book__cover-exerpt {
-  background-color:#ededed;
+  background-color: var(--loading-grey);
   background: linear-gradient(100deg,
       rgba(255, 255, 255, 0) 40%,
       rgba(255, 255, 255, .5) 50%,
-      rgba(255, 255, 255, 0) 60%) #ededed;
+      rgba(255, 255, 255, 0) 60%) var(--loading-grey);
   background-size: 200% 100%;
   background-position-x: 180%;
   animation: 1s loading ease-in-out infinite;
@@ -402,16 +405,13 @@ body.no-scroll {
     background-position-x: -20%;
   }
 }
-.loading p {
-      min-height: 1.6rem;
-      border-radius: 4px;
-      margin-top: 1rem;
-      animation-delay: .05s;
-    }
-
+.loading p{
+  margin-top: 1rem;
+}
 </style>
 <style lang="scss" scoped>
 :root {
+  --loading-grey: #ededed;
   --has-expanded-wrapper: false;
 }
 
