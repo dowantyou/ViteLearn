@@ -24,7 +24,10 @@
         </div>
 
         <div class="title-wrap">
+          <div class="header-info">         
           <h1 class="article-title">{{ book.title }}</h1>
+          <div class="voice" :class="{ playing: currentPlayingindex === index}" @click.stop="playSound(index)"></div>
+         </div> 
           <p class="light-ipa">{{ book.LightIPA }}</p>
           <p class="old-ipa">{{ book.OldIPA }}</p>
           <p class="mw-ipa">{{ book.MWIPA }}</p>
@@ -68,7 +71,7 @@ const expandedIndex = ref(null); // 当前展开的卡片索引
 const showAllCards = ref(true); // 控制是否显示所有卡片
 // 新增的加载状态变量
 const isLoading = ref(true);
-const loadingGray = ref('#ededed'); // 定义loading-gray变量
+const currentPlayingindex = ref(null); // 当前正在播放的卡片索引
 
 // 使用计算属性决定是否添加 'wrapper--expanded' 类
 const isWrapperExpanded = computed(() => expandedIndex.value !== null);
@@ -111,7 +114,12 @@ const toggleBook = index => {
     showAllCards.value = false;
   }
 };
-
+function playSound(index) {
+  currentPlayingindex.value = index;
+  setTimeout(() => {
+    currentPlayingindex.value = null;
+  }, 5000); // 动画持续时间后重置状态
+}
 </script>
 
 <style scoped>
@@ -181,6 +189,11 @@ const toggleBook = index => {
   right: 0;
   bottom: 0;
   left: 0;
+}
+.header-info {
+  display: flex;
+  align-items: center; /* 垂直居中对齐 */
+  justify-content: center;
 }
 
 .title-wrap {
@@ -408,7 +421,36 @@ body.no-scroll {
       margin-top: 1rem;
       animation-delay: .05s;
     }
-
+/* 语音播放 */
+.voice{
+  background-image: url(@/assets/images/voice/语音播放.png);
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background-size: 16px;
+  background-position: 50%;
+  cursor: pointer;
+}
+@keyframes voiceAnimation{
+  0%{
+    background-image: url(@/assets/images/voice/sound.png);
+  }
+  30%{
+    background-image: url(@/assets/images/voice/sound-1.png);
+  }
+  60%{
+    background-image: url(@/assets/images/voice/sound-2.png);
+  }
+  90%{
+    background-image: url(@/assets/images/voice/sound-1.png);
+  }
+  to{
+    background-image: url(@/assets/images/voice/sound.png);
+  }
+}
+.playing {
+  animation: voiceAnimation 1.5s steps(10, end) infinite;
+}
 </style>
 <style lang="scss" scoped>
 :root {
